@@ -8,19 +8,6 @@
     visibility: hidden;
 }
 
-.FretGroup__fret {
-    width: 4px;
-    border: solid gray 1px;
-    border-radius: 2px;
-    height: 96%;
-    position: relative;
-    top: 1%;
-}
-
-.FretGroup__fret:hover {
-    background-color: orange;
-}
-
 .FretGroup__space {
     flex-grow: 1;
     position: relative;

@@ -1,6 +1,7 @@
 import React from 'react';
 import './FretGroup.css';
 import Decoration from './Decoration';
+import Fret from './Fret';
 
 export default function FretGroup({number, style}) {
   return (
@@ -8,7 +9,7 @@ export default function FretGroup({number, style}) {
       <div className="FretGroup__space">
         <Decoration number={number}/>
       </div>
-      <div className="FretGroup__fret"/>
+      <Fret/>
     </div>
   );
 };

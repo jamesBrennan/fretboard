@@ -1,0 +1,12 @@
+.Fret {
+    width: 4px;
+    border: solid gray 1px;
+    border-radius: 2px;
+    height: 96%;
+    position: relative;
+    top: 1%;
+}
+
+.Fret:hover {
+    background-color: orange;
+}
