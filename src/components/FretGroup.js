@@ -9,7 +9,7 @@ export default function FretGroup({number, style}) {
       <div className="FretGroup__space">
         <Decoration number={number}/>
       </div>
-      <Fret/>
+      <Fret number={number}/>
     </div>
   );
 };

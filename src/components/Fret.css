@@ -5,8 +5,33 @@
     height: 96%;
     position: relative;
     top: 1%;
+    display: flex;
+    flex-direction: column;
 }
 
-.Fret:hover {
-    background-color: orange;
+.HitBox:hover {
+}
+
+.HitBox {
+    width: 600%;
+    position: relative;
+    left: -400%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.HitBox__note {
+    background-color: darkgray;
+    border-radius: 70%;
+    height: 70%;
+    width: 70%;
+    position: relative;
+    left: 23%;
+    display: none;
+}
+
+.HitBox:hover .HitBox__note {
+    display: block;
 }

@@ -6,7 +6,7 @@ function Detail() {
 }
 
 function details(num) {
-  if(num === 12) { return [<Detail/>, <Detail/>] }
+  if(num === 12) { return [<Detail key={0}/>, <Detail key={1}/>] }
   if([5,7,9,15,17,19,21].includes(num)) {
     return <Detail/>
   }

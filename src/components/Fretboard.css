@@ -1,6 +1,6 @@
 .Fretboard {
     width: 90vw;
-    height: 100px;
+    height: 120px;
     border: solid gray 1px;
     display: flex;
     margin: 20px auto;
@@ -32,21 +32,21 @@
 .Fretboard__string--2 {
     background: lightgray;
     height: 1px;
-    top: 25%
+    top: 26%
 }
 .Fretboard__string--3 {
-    height: 0.08em;
-    top: 40%
+    height: 0.05em;
+    top: 42%
 }
 .Fretboard__string--4 {
-    height: 0.11em;
-    top: 55%
+    height: 0.13em;
+    top: 58%
 }
 .Fretboard__string--5 {
     height: 0.15em;
-    top: 70%
+    top: 73%
 }
 .Fretboard__string--6 {
     height: 0.2em;
-    top: 85%
+    top: 89%
 }
