@@ -1,0 +1,43 @@
+.FretGroup {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.FretGroup:last-child {
+    visibility: hidden;
+}
+
+.FretGroup__fret {
+    width: 4px;
+    border: solid gray 1px;
+    border-radius: 2px;
+    height: 96%;
+    position: relative;
+    top: 1%;
+}
+
+.FretGroup__space {
+    flex-grow: 1;
+    position: relative;
+}
+
+.Decoration {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.Decoration__detail {
+    vertical-align: middle;
+    font-size: 32px;
+    line-height: 28px;
+    letter-spacing: 0;
+}
