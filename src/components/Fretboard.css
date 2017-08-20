@@ -13,11 +13,40 @@
     left: 0;
     margin: 0;
     padding: 0;
+    border: none;
+    opacity: 0.5;
+    background: repeating-linear-gradient(
+        45deg,
+        #ababa4,
+        #ababa4 0.5px,
+        #8d6a1b 0.5px,
+        #ababa4 1.5px
+    );
 }
 
-.Fretboard__string--1 { top: 10% }
-.Fretboard__string--2 { top: 25% }
-.Fretboard__string--3 { top: 40% }
-.Fretboard__string--4 { top: 55% }
-.Fretboard__string--5 { top: 70% }
-.Fretboard__string--6 { top: 85% }
+.Fretboard__string--1 {
+    background: lightgray;
+    height: 1px;
+    top: 10%
+}
+.Fretboard__string--2 {
+    background: lightgray;
+    height: 1px;
+    top: 25%
+}
+.Fretboard__string--3 {
+    height: 0.08em;
+    top: 40%
+}
+.Fretboard__string--4 {
+    height: 0.11em;
+    top: 55%
+}
+.Fretboard__string--5 {
+    height: 0.15em;
+    top: 70%
+}
+.Fretboard__string--6 {
+    height: 0.2em;
+    top: 85%
+}
