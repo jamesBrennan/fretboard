@@ -4,5 +4,20 @@
     border: solid gray 1px;
     display: flex;
     margin: 20px auto;
+    position: relative;
 }
 
+.Fretboard__string {
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.Fretboard__string--1 { top: 10% }
+.Fretboard__string--2 { top: 25% }
+.Fretboard__string--3 { top: 40% }
+.Fretboard__string--4 { top: 55% }
+.Fretboard__string--5 { top: 70% }
+.Fretboard__string--6 { top: 85% }
