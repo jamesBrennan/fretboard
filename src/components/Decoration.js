@@ -6,14 +6,14 @@ function Detail() {
 }
 
 export default function Decoration({number}) {
-  if([5,7,9,15,17,19,21].includes(number)) {
+  if([5,7,9,15,17,19,21].includes(number+1)) {
     return (
       <div className="Decoration">
         <Detail/>
       </div>
     );
   }
-  if(12 === number) {
+  if(12 === number+1) {
     return (
       <div className="Decoration">
         <Detail/>
