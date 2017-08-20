@@ -17,7 +17,15 @@
     top: 1%;
 }
 
+.FretGroup__fret:hover {
+    background-color: orange;
+}
+
 .FretGroup__space {
     flex-grow: 1;
     position: relative;
+}
+
+.FretGroup__space:hover {
+    background-color: honeydew;
 }
