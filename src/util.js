@@ -8,3 +8,7 @@ export function range(a, b) {
   }
   return c;
 }
+
+export function positionRatio(position) {
+  return range(position).reduce((prev => prev / 1.05946), 1);
+}

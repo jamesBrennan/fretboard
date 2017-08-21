@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import * as action from './hitboxActions';
+import * as action from '../actions/hitboxActions';
+import './Hitbox.css';
 
 function HitBox({string, fret, onClick, onMouseEnter, onMouseLeave}) {
   return (
@@ -15,15 +15,18 @@ function HitBox({string, fret, onClick, onMouseEnter, onMouseLeave}) {
   )
 }
 
-const wrap = dispatch => actionCreator => {
+const curry = dispatch => actionCreator => {
   return (...args) => dispatch(actionCreator(...args))
 };
 
 export default connect(
   state => ({}),
-  dispatch => ({
-    onMouseEnter: wrap(dispatch)(action.mouseEnteredHitbox),
-    onMouseLeave: wrap(dispatch)(action.mouseLeftHitbox),
-    onClick: wrap(dispatch)(action.hitboxClicked)
-  })
+  dispatch => {
+    let curried = curry(dispatch);
+    return {
+      onMouseEnter: curried(action.mouseEnteredHitbox),
+      onMouseLeave: curried(action.mouseLeftHitbox),
+      onClick:      curried(action.hitboxClicked)
+    }
+  }
 )(HitBox);

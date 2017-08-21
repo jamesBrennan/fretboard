@@ -1,0 +1,22 @@
+.HitBox {
+    width: 600%;
+    position: relative;
+    left: -280%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.HitBox__note {
+    background-color: darkgray;
+    border-radius: 70%;
+    height: 70%;
+    width: 70%;
+    position: relative;
+    display: none;
+}
+
+.HitBox:hover .HitBox__note {
+    display: block;
+}

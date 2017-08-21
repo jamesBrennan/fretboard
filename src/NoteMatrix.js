@@ -14,10 +14,10 @@ const notes = [
 ];
 
 function noteSequence(start, length) {
-  let idx = notes.indexOf(start);
+  let offset = notes.indexOf(start);
   let seq = [];
   for(let i=0; i <= length; i++) {
-    seq.push(notes[(i+idx)%12])
+    seq.push(notes[(i+offset)%12])
   }
   return seq;
 }

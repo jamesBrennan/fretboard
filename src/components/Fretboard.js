@@ -1,11 +1,7 @@
 import React from 'react';
 import './Fretboard.css';
 import FretGroup from './FretGroup';
-import { range } from '../util';
-
-function positionRatio(number) {
-  return range(number).reduce((prev => prev / 1.05946), 1);
-}
+import { range, positionRatio } from '../util';
 
 function Fretboard({frets}) {
   return (

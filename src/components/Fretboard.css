@@ -3,7 +3,7 @@
     height: 120px;
     border: solid gray 1px;
     display: flex;
-    margin: 20px auto;
+    margin: 20px auto 5px;
     position: relative;
 }
 
