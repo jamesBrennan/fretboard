@@ -1,4 +1,7 @@
+import IntervalMatrix from './IntervalMatrix';
+
 const initialState = {
+  intervalMatrix: IntervalMatrix(),
   fretboard: [[],[],[],[],[],[]]
 };
 
