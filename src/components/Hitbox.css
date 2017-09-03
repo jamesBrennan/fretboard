@@ -17,6 +17,15 @@
     display: none;
 }
 
+.HitBox:hover {
+    cursor: pointer;
+}
+
 .HitBox:hover .HitBox__note {
     display: block;
+}
+
+.HitBox__note--pinned {
+    display: block;
+    background-color: orangered;
 }

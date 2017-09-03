@@ -1,0 +1,24 @@
+import {HITBOX_CLICKED} from "../actions/hitboxActions";
+import {merge} from "../util";
+
+function fretboardReducer(state, action = {}) {
+  switch(action.type) {
+    case HITBOX_CLICKED:
+      let {string, fret} = action.payload;
+      let next = merge(state.fretboard, {});
+      if(!next[fret]) {
+        next[fret] = {};
+        next[fret][string] = true;
+      }
+      else {
+        next[fret][string] = !state.fretboard[fret][string];
+      }
+      return merge(state, {
+        fretboard: next
+      });
+    default:
+      return state;
+  }
+}
+
+export default fretboardReducer;

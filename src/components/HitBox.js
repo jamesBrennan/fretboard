@@ -1,16 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import * as action from '../actions/hitboxActions';
 import './Hitbox.css';
 
-function HitBox({string, fret, onClick, onMouseEnter, onMouseLeave}) {
+function HitBox({string, fret, note, visible, onClick, onMouseEnter, onMouseLeave}) {
   return (
     <div className="HitBox"
-         onMouseEnter={() => onMouseEnter(string, fret)}
-         onMouseLeave={() => onMouseLeave(string, fret)}
-         onClick={() => {onClick(string, fret)}}
+         onMouseEnter={() => onMouseEnter({string, fret, note, visible})}
+         onMouseLeave={() => onMouseLeave({string, fret, note, visible})}
+         onClick={() => onClick({string, fret, note, visible})}
     >
-      <div className="HitBox__note"/>
+      <div className={classNames('HitBox__note', {'HitBox__note--pinned': visible})} />
     </div>
   )
 }
