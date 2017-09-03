@@ -5,7 +5,7 @@ import FretGroup from './FretGroup';
 import { range, positionRatio } from '../util';
 
 function fretNotes(strings, num) {
-  return strings.map(string => string[num + 1]).reverse();
+  return strings.map(string => string[num]).reverse();
 }
 
 function Fretboard({frets, strings, pinnedNotes}) {
@@ -21,7 +21,7 @@ function Fretboard({frets, strings, pinnedNotes}) {
         <FretGroup
           key={num}
           number={num}
-          notes={fretNotes(strings, num)}
+          notes={fretNotes(strings, num+1)}
           pinnedNotes={pinnedNotes[num+1]}
           style={{flex: positionRatio(num)}} />
       )}

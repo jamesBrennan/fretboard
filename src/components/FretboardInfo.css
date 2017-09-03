@@ -2,7 +2,6 @@
     width: 90vw;
     min-height: 45px;
     height: 45px;
-    border: solid pink 1px;
     display: flex;
     margin: 5px auto;
 }
@@ -20,5 +19,6 @@
     bottom: 0;
     right: -15px;
     width: 30px;
-    border: solid green 1px;
+    display: flex;
+    flex-direction: column;
 }

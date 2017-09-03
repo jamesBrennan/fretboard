@@ -4,14 +4,14 @@ import {merge} from "../util";
 function fretboardReducer(state, action = {}) {
   switch(action.type) {
     case HITBOX_CLICKED:
-      let {string, fret} = action.payload;
+      let {string, fret, note} = action.payload;
       let next = merge(state.fretboard, {});
       if(!next[fret]) {
         next[fret] = {};
-        next[fret][string] = true;
+        next[fret][string] = note;
       }
       else {
-        next[fret][string] = !state.fretboard[fret][string];
+        next[fret][string] = !state.fretboard[fret][string] ? note : false;
       }
       return merge(state, {
         fretboard: next
