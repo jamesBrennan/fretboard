@@ -1,26 +1,4 @@
-const notes = [
-  'A',
-  'A♯/B♭',
-  'B',
-  'C',
-  'C♯/D♭',
-  'D',
-  'D♯/E♭',
-  'E',
-  'F',
-  'F♯/G♭',
-  'G',
-  'G♯/A♭'
-];
-
-function noteSequence(start, length) {
-  let offset = notes.indexOf(start);
-  let seq = [];
-  for(let i=0; i <= length; i++) {
-    seq.push(notes[(i+offset)%12])
-  }
-  return seq;
-}
+import { noteSequence } from "./notes";
 
 export default function NoteMatrix(rootNote = 'E', tuning = ['E','A','D','G','B','E']) {
   let fretCount = 24;
