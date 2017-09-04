@@ -10,9 +10,9 @@
 
 .HitBox__note {
     background-color: gray;
-    border-radius: 70%;
-    height: 70%;
-    width: 70%;
+    border-radius: 100%;
+    height: 100%;
+    width: 90%;
     position: relative;
     display: none;
 }
@@ -28,4 +28,22 @@
 .HitBox__note--pinned {
     display: block;
     background-color: orangered;
+}
+
+.HitBox__note-name {
+    visibility: hidden;
+    color: white;
+    font-size: 12px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    letter-spacing: -3px;
+}
+
+.HitBox__note-name--pinned {
+    visibility: visible;
+}
+
+.HitBox__note-name-modifier {
+    font-size: 8px;
 }

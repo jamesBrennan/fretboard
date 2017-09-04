@@ -4,6 +4,12 @@ import classNames from 'classnames';
 import * as action from '../actions/hitboxActions';
 import './Hitbox.css';
 
+function formatNoteName(name, group) {
+  let re = /(\w)(♯)?(\/\w♭)?/;
+  let match = re.exec(name);
+  return match ? match[group] : name;
+}
+
 function HitBox({string, fret, note, visible, onClick, onMouseEnter, onMouseLeave}) {
   return (
     <div className="HitBox"
@@ -11,7 +17,13 @@ function HitBox({string, fret, note, visible, onClick, onMouseEnter, onMouseLeav
          onMouseLeave={() => onMouseLeave({string, fret, note, visible})}
          onClick={() => onClick({string, fret, note, visible})}
     >
-      <div className={classNames('HitBox__note', {'HitBox__note--pinned': visible})} />
+      <div className={classNames('HitBox__note', {'HitBox__note--pinned': visible})}>
+        <div
+          className={classNames('HitBox__note-name', {'HitBox__note-name--pinned': visible})}>
+          {formatNoteName(note, 1)}
+          <sup className="HitBox__note-name-modifier">{formatNoteName(note, 2)}</sup>
+        </div>
+      </div>
     </div>
   )
 }

@@ -11,7 +11,7 @@ function fretboardReducer(state, action = {}) {
         next[fret][string] = note;
       }
       else {
-        next[fret][string] = !state.fretboard[fret][string] ? note : false;
+        next[fret][string] = state.fretboard[fret][string] ? false : note;
       }
       return merge(state, {
         fretboard: next

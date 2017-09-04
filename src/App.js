@@ -10,7 +10,6 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Fretboard frets={23}/>
-        <FretboardInfo frets={23}/>
       </div>
     </Provider>
   );
