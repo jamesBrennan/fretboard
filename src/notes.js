@@ -1,3 +1,5 @@
+import { range } from "./util";
+
 export const NOTES = [
   'A',
   'A♯/B♭',
@@ -13,7 +15,7 @@ export const NOTES = [
   'G♯/A♭'
 ];
 
-const degrees = [
+const DEGREES = [
   'A',
   'B',
   'C',
@@ -25,11 +27,7 @@ const degrees = [
 
 export function noteSequence(start, length) {
   let offset = NOTES.indexOf(start);
-  let seq = [];
-  for(let i=0; i <= length; i++) {
-    seq.push(NOTES[(i+offset)%12])
-  }
-  return seq;
+  return range(length).map(i => NOTES[(i+offset)%12]);
 }
 
 export function intervalSequence(start, intervals = []) {
@@ -38,5 +36,6 @@ export function intervalSequence(start, intervals = []) {
 }
 
 export function degreeSequence(start, length) {
-
+  let offset = DEGREES.indexOf(start);
+  return range(length).map(i => DEGREES[(i+offset)%7])
 }
