@@ -1,4 +1,4 @@
-import { intervalSequence } from "./notes";
+import {degreeName, degreeSequence, intervalSequence} from "./notes";
 import { uniq } from "./util";
 
 
@@ -16,8 +16,10 @@ export const HARMONIC_MINOR = [0,2,3,5,5,8,   11,12];
 
 
 export function getNotes(root, scale) {
-  return(
-    uniq(
-      intervalSequence(root, scale)
-    ));
+  let noteNames = intervalSequence(root, scale);
+  let degrees = degreeSequence(root, scale.length);
+  let notes = noteNames.map((noteName, idx) => {
+    return degreeName(noteName, degrees[idx]);
+  });
+  return uniq(notes);
 }

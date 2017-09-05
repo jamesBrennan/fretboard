@@ -1,7 +1,7 @@
 import {
   noteSequence,
   intervalSequence,
-  degreeSequence
+  degreeSequence, degreeName
 } from "./notes";
 
 describe('noteSequence()', () => {
@@ -50,5 +50,19 @@ describe('degreeSequence()', () => {
       'D',
       'E'
     ])
+  });
+});
+
+describe('degreeName()', () => {
+  test('returns note name matching degree', () => {
+    expect(degreeName('C♯/D♭', 'C')).toEqual('C♯');
+    expect(degreeName('C♯/D♭', 'D')).toEqual('D♭');
+    expect(degreeName('C', 'C')).toEqual('C')
+  });
+
+  test('raises an error when degree does not match note nome', () => {
+    expect(() => {
+      degreeName('C♯/D♭', 'E')
+    }).toThrow();
   });
 });
