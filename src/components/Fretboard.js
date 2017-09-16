@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './Fretboard.css';
 import FretGroup from './FretGroup';
 import { range, positionRatio } from '../util';
+import Fret from "./Fret";
 
 function fretNotes(strings, num) {
   return strings.map(string => string[num]);
@@ -17,6 +18,14 @@ function Fretboard({frets, strings, pinnedNotes}) {
       <hr className="Fretboard__string Fretboard__string--4"/>
       <hr className="Fretboard__string Fretboard__string--5"/>
       <hr className="Fretboard__string Fretboard__string--6"/>
+
+      <Fret
+        className='Fret--nut'
+        number={0}
+        notes={fretNotes(strings, 0)}
+        pinnedNotes={pinnedNotes[0]}
+      />
+
       {range(frets).map(num =>
         <FretGroup
           key={num}

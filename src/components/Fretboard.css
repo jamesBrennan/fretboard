@@ -50,3 +50,8 @@
     height: 0.2em;
     top: 89%
 }
+
+.Fret--nut {
+    position: absolute;
+    left: -3px;
+}
