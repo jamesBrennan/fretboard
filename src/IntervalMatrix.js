@@ -18,5 +18,5 @@ export default function IntervalMatrix(rootPosition = 0, tuning = [0,5,10,15,19,
   return tuning.reduce((matrix, openInterval) => {
     matrix.push(range(openInterval, openInterval + fretCount));
     return matrix;
-  },[]);
+  },[]).reverse();
 }

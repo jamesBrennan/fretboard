@@ -1,7 +1,9 @@
 import {
   noteSequence,
   intervalSequence,
-  degreeSequence, degreeName
+  degreeSequence,
+  degreeName,
+  equals
 } from "./notes";
 
 describe('noteSequence()', () => {
@@ -64,5 +66,25 @@ describe('degreeName()', () => {
     expect(() => {
       degreeName('C♯/D♭', 'E')
     }).toThrow();
+  });
+});
+
+describe('equals', () => {
+  test('exact match', () => {
+    expect(equals('A','A')).toBeTruthy();
+    expect(equals('A♯/B♭','A♯/B♭')).toBeTruthy();
+  });
+
+  test('partial match', () => {
+    expect(equals('A♯', 'A♯/B♭')).toBeTruthy();
+    expect(equals('A♯/B♭', 'A♯')).toBeTruthy();
+    expect(equals('B♭', 'A♯/B♭')).toBeTruthy();
+    expect(equals('A♯/B♭', 'B♭')).toBeTruthy();
+    expect(equals('A♯', 'B♭')).toBeTruthy();
+
+    expect(equals('A', 'A♯/B♭')).not.toBeTruthy();
+    expect(equals('B', 'A♯/B♭')).not.toBeTruthy();
+    expect(equals('A♯/B♭', 'A')).not.toBeTruthy();
+    expect(equals('A♯/B♭', 'B')).not.toBeTruthy();
   });
 });

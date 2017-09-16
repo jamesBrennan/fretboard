@@ -5,7 +5,7 @@ import FretGroup from './FretGroup';
 import { range, positionRatio } from '../util';
 
 function fretNotes(strings, num) {
-  return strings.map(string => string[num]).reverse();
+  return strings.map(string => string[num]);
 }
 
 function Fretboard({frets, strings, pinnedNotes}) {

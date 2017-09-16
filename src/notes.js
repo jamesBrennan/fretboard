@@ -1,18 +1,18 @@
 import { range } from "./util";
 
 export const NOTES = [
-  'A',
-  'A♯/B♭',
-  'B',
-  'C',
-  'C♯/D♭',
-  'D',
-  'D♯/E♭',
-  'E',
-  'F',
-  'F♯/G♭',
-  'G',
-  'G♯/A♭'
+  ['A'],
+  ['A♯','B♭','A♯/B♭'],
+  ['B'],
+  ['C'],
+  ['C♯','D♭','C♯/D♭'],
+  ['D'],
+  ['D♯','E♭','D♯/E♭'],
+  ['E'],
+  ['F'],
+  ['F♯','G♭','F♯/G♭'],
+  ['G'],
+  ['G♯','A♭','G♯/A♭'],
 ];
 
 const DEGREES = [
@@ -25,14 +25,28 @@ const DEGREES = [
   'G'
 ];
 
+function noteOffset(note) {
+  return NOTES.indexOf(noteGroup(note));
+}
+
+function noteGroup(note) {
+  return NOTES.find(noteGroup => noteGroup.includes(note));
+}
+
+function formatNoteName(notes) {
+  return notes.length === 1 ? notes[0] : `${notes[0]}/${notes[1]}`
+}
+
+function collectNotes(intervals, offset) {
+  return intervals.map(i => formatNoteName(NOTES[(i+offset)%12]))
+}
+
 export function noteSequence(start, length) {
-  let offset = NOTES.indexOf(start);
-  return range(length).map(i => NOTES[(i+offset)%12]);
+  return collectNotes(range(length), noteOffset(start));
 }
 
 export function intervalSequence(start, intervals = []) {
-  let offset = NOTES.indexOf(start);
-  return intervals.map(semitones => NOTES[(semitones+offset)%12]);
+  return collectNotes(intervals, noteOffset(start));
 }
 
 export function degreeSequence(start, length) {
@@ -48,4 +62,8 @@ export function degreeName(noteName, degree) {
     return match.slice(1).join('');
   }
   throw `The given degree "${degree}" does not match the given note name "${noteName}"`;
+}
+
+export function equals(a, b) {
+  return noteOffset(a) === noteOffset(b);
 }

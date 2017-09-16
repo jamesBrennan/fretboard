@@ -1,4 +1,4 @@
-import {degreeName, degreeSequence, intervalSequence} from "./notes";
+import { degreeName, degreeSequence, intervalSequence } from "./notes";
 import { uniq } from "./util";
 
 
