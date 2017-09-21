@@ -1,12 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { clearAll } from "../actions/actionBarActions";
+import { clearAll } from "../../actions/actionBarActions";
+
+import ActionControl from './ActionControl';
+import ChordSelector from './ChordSelector';
+
+import './ActionBar.css';
 
 export function ActionBar({clearAll}) {
   return(
     <div className="ActionBar">
-      <button onClick={clearAll}>Clear All</button>
+      <ActionControl>
+        <button onClick={clearAll}>Clear All</button>
+      </ActionControl>
+      <ActionControl>
+        <ChordSelector />
+      </ActionControl>
     </div>
   )
 }

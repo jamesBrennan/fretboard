@@ -7,6 +7,7 @@ import reducers from './reducers/index';
 function envMiddlewares(env) {
   switch (env) {
     case 'production':
+    case 'test':
       return applyMiddleware(...reducers);
     default:
       return composeWithDevTools(

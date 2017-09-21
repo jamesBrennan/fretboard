@@ -4,7 +4,7 @@ import store from './store';
 
 import './App.css';
 import Fretboard from './components/Fretboard';
-import ActionBar from './components/ActionBar';
+import ActionBar from './components/action_bar/ActionBar';
 
 function App() {
   return (
