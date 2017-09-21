@@ -1,6 +1,6 @@
 import IntervalMatrix from '../IntervalMatrix';
 import NoteMatrix from '../NoteMatrix';
-import fretboardReducer from "./fretboardReducer";
+import fretboardReducer from "./fretboard/fretboardReducer";
 
 const initialState = {
   noteMatrix: NoteMatrix(),

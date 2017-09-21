@@ -1,6 +1,6 @@
 import fretboardReducer from './fretboardReducer';
-import {HITBOX_CLICKED, hitboxClicked} from "../actions/hitboxActions";
-import NoteMatrix from '../NoteMatrix';
+import {HITBOX_CLICKED, hitboxClicked} from "../../actions/hitboxActions";
+import NoteMatrix from '../../NoteMatrix';
 
 describe(HITBOX_CLICKED, () => {
   let action, appState, output;
