@@ -1,10 +1,10 @@
 import toggleNotes from './toggleNotes';
 import { collectNotePositions } from "../../NoteMatrix";
 
-export function hitboxClickedTransform(state, {payload} = {}) {
+export function rootNoteSelectedTransform(state, {payload} = {}) {
   let notes, current;
 
   current = state.fretboard;
-  notes = collectNotePositions(payload.note, state.noteMatrix);
+  notes = collectNotePositions(payload, state.noteMatrix);
   return toggleNotes({current, notes});
 }
