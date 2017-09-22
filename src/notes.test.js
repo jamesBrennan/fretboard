@@ -5,6 +5,7 @@ import {
   degreeName,
   equals
 } from "./notes";
+import {range} from "./util";
 
 describe('noteSequence()', () => {
   test('returns an array of notes that increment by semitones', () => {
@@ -39,8 +40,8 @@ describe('intervalSequence()', () => {
 });
 
 describe('degreeSequence()', () => {
-  test('returns an array of note letters of the requested length', () => {
-    expect(degreeSequence('C', 10)).toEqual([
+  test('returns an array of note letters matching the given degrees', () => {
+    expect(degreeSequence('C', range(1, 10))).toEqual([
       'C',
       'D',
       'E',
@@ -50,6 +51,18 @@ describe('degreeSequence()', () => {
       'B',
       'C',
       'D',
+      'E'
+    ]);
+
+    expect(degreeSequence('A', [1,3,5])).toEqual([
+      'A',
+      'C',
+      'E'
+    ]);
+
+    expect(degreeSequence('A', ['1','3','5'])).toEqual([
+      'A',
+      'C',
       'E'
     ])
   });

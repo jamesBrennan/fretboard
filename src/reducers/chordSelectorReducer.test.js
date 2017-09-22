@@ -3,9 +3,10 @@ import {
   CHORD_TYPE_SELECTED, chordTypeSelected, ROOT_NOTE_SELECTED,
   rootNoteSelected
 } from "../actions/chordActions";
+import {CLEAR_ALL, clearAll} from "../actions/actionBarActions";
 
 describe('chordSelectorReducer', () => {
-  let action, next;
+  let action, next, state;
 
   describe(ROOT_NOTE_SELECTED, () => {
     it('sets the root note', () => {
@@ -34,4 +35,17 @@ describe('chordSelectorReducer', () => {
       expect(next.type).toEqual(undefined);
     });
   });
+
+  describe(CLEAR_ALL, () => {
+    it('resets to the initial state', () => {
+      state = {
+        root: 'A',
+        type: 'Major'
+      };
+
+      action = clearAll();
+      next = chordSelectorReducer(state, action);
+      expect(next).toEqual(initialState);
+    });
+  })
 });

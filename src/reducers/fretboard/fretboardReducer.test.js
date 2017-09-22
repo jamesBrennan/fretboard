@@ -1,7 +1,10 @@
 import fretboardReducer from './fretboardReducer';
 import {HITBOX_CLICKED, hitboxClicked} from "../../actions/hitboxActions";
 import NoteMatrix from '../../NoteMatrix';
-import {ROOT_NOTE_SELECTED, rootNoteSelected} from "../../actions/chordActions";
+import {
+  CHORD_TYPE_SELECTED, chordTypeSelected, ROOT_NOTE_SELECTED,
+  rootNoteSelected
+} from "../../actions/chordActions";
 
 describe('fretboardReducer', () => {
   let action, appState, next;
@@ -64,5 +67,94 @@ describe('fretboardReducer', () => {
       expect(next.fretboard).toEqual({});
     });
   });
-});
 
+  describe(CHORD_TYPE_SELECTED, () => {
+    describe('Major', () => {
+
+      it('displays the other notes ', () => {
+        appState.chordSelector = {
+          root: 'A',
+          type: undefined
+        };
+
+        action = chordTypeSelected('Major');
+        next = fretboardReducer(appState, action);
+
+        expect(next.fretboard['2']).toEqual({
+          '2': 'C♯',
+          '3': 'A',
+          '4': 'E'
+        });
+      });
+    });
+
+    describe('Minor', () => {
+      it('displays the other notes ', () => {
+        appState.chordSelector = {
+          root: 'A',
+          type: undefined
+        };
+
+        action = chordTypeSelected('Minor');
+        next = fretboardReducer(appState, action);
+
+        expect(next.fretboard['2']).toEqual({
+          '3': 'A',
+          '4': 'E'
+        });
+      });
+
+      it('displays only the chord notes', () => {
+        appState.chordSelector = {
+          root: 'A',
+          type: 'Major',
+          fretboard: {
+            '2': {
+              '2': 'C♯',
+              '3': 'A',
+              '4': 'E'
+            }
+          }
+        };
+
+        action = chordTypeSelected('Minor');
+        next = fretboardReducer(appState, action);
+
+        expect(next.fretboard['2']).toEqual({
+          '3': 'A',
+          '4': 'E'
+        });
+      });
+    });
+
+    describe('When root is undefined', () => {
+      it('does not modify the state', () => {
+        appState.chordSelector = {
+          root: undefined,
+          type: undefined
+        };
+
+        action = chordTypeSelected('Minor');
+        next = fretboardReducer(appState, action);
+
+        expect(next.fretboard).toEqual(appState.fretboard);
+      });
+    });
+
+    describe('An empty string', () => {
+      it('displays only the root', () => {
+        appState.chordSelector = {
+          root: 'A',
+          type: 'Major'
+        };
+
+        action = chordTypeSelected('');
+        next = fretboardReducer(appState, action);
+
+        expect(next.fretboard['2']).toEqual({
+          '3': 'A'
+        })
+      });
+    });
+  });
+});

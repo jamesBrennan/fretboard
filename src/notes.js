@@ -49,9 +49,9 @@ export function intervalSequence(start, intervals = []) {
   return collectNotes(intervals, noteOffset(start));
 }
 
-export function degreeSequence(start, length) {
-  let offset = DEGREES.indexOf(start);
-  return range(length).map(i => DEGREES[(i+offset)%7])
+export function degreeSequence(start, degrees = []) {
+  let offset = DEGREES.indexOf(start) - 1;
+  return degrees.map(i => DEGREES[(Number.parseInt(i)+offset)%7])
 }
 
 export function degreeName(noteName, degree) {
