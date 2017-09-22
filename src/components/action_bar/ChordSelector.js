@@ -8,9 +8,7 @@ import {
   chordTypeSelected
 } from '../../actions/chordActions';
 
-const TYPES = [
-  'Major', 'Minor'
-];
+import {TYPES} from "../../chords";
 
 function ChordSelector({root, type, onRootChange, onTypeChange}) {
   return(
