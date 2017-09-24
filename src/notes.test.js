@@ -3,7 +3,7 @@ import {
   intervalSequence,
   degreeSequence,
   degreeName,
-  equals
+  equals, isCompoundName, descriptionMatches
 } from "./notes";
 import {range} from "./util";
 
@@ -99,5 +99,32 @@ describe('equals', () => {
     expect(equals('B', 'A♯/B♭')).not.toBeTruthy();
     expect(equals('A♯/B♭', 'A')).not.toBeTruthy();
     expect(equals('A♯/B♭', 'B')).not.toBeTruthy();
+  });
+});
+
+describe('isCompoundName', () => {
+  test('true case', () => {
+    expect(isCompoundName('C♯/D♭')).toBeTruthy();
+  });
+
+  test('false case', () => {
+    expect(isCompoundName('C♯')).not.toBeTruthy();
+  })
+});
+
+describe('descriptionMatches', () => {
+  test('exact match', () => {
+    expect(descriptionMatches('C♯')).toEqual(['C♯'])
+  });
+
+  test('partial match', () => {
+    expect(descriptionMatches('C')).toEqual(['C', 'C♯']);
+    expect(descriptionMatches('c')).toEqual(['C', 'C♯']);
+  });
+
+  test('language match', () => {
+    expect(descriptionMatches('c sharp')).toEqual(['C♯']);
+    expect(descriptionMatches('c sh')).toEqual(['C♯']);
+    expect(descriptionMatches('csh')).toEqual(['C♯']);
   });
 });

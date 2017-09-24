@@ -13,3 +13,20 @@ export const chordTypeSelected = (type) => {
     payload: type
   }
 };
+
+export const CHORD_SELECTED = 'CHORD_SELECTED';
+export const chordSelected = (value) => {
+  return {
+    type: CHORD_SELECTED,
+    payload: value
+  }
+};
+
+export const CHORD_TYPEAHEAD_CHANGED = 'CHORD_TYPEAHEAD_CHANGED';
+export const chordTypeaheadChanged = (value) => {
+  return {
+    type: CHORD_TYPEAHEAD_CHANGED,
+    payload: value
+  }
+};
+

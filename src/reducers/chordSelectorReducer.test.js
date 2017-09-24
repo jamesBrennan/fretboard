@@ -1,9 +1,14 @@
 import {chordSelectorReducer, initialState} from "./chordSelectorReducer";
 import {
-  CHORD_TYPE_SELECTED, chordTypeSelected, ROOT_NOTE_SELECTED,
+  CHORD_SELECTED,
+  CHORD_TYPE_SELECTED, CHORD_TYPEAHEAD_CHANGED, chordSelected,
+  chordTypeaheadChanged,
+  chordTypeSelected,
+  ROOT_NOTE_SELECTED,
   rootNoteSelected
 } from "../actions/chordActions";
 import {CLEAR_ALL, clearAll} from "../actions/actionBarActions";
+import {merge} from "../util";
 
 describe('chordSelectorReducer', () => {
   let action, next, state;
@@ -18,7 +23,7 @@ describe('chordSelectorReducer', () => {
     it('sets the root note to null when payload is empty', () => {
       action = rootNoteSelected('');
       next = chordSelectorReducer(initialState, action);
-      expect(next.root).toEqual(undefined);
+      expect(next.root).toEqual('');
     });
   });
 
@@ -32,7 +37,7 @@ describe('chordSelectorReducer', () => {
     it('sets the type to null when payload is empty', () => {
       action = chordTypeSelected('');
       next = chordSelectorReducer(initialState, action);
-      expect(next.type).toEqual(undefined);
+      expect(next.type).toEqual('');
     });
   });
 
@@ -47,5 +52,39 @@ describe('chordSelectorReducer', () => {
       next = chordSelectorReducer(state, action);
       expect(next).toEqual(initialState);
     });
-  })
+  });
+
+  describe(CHORD_TYPEAHEAD_CHANGED, () => {
+    it('sets the value', () => {
+      action = chordTypeaheadChanged('some value');
+      next = chordSelectorReducer(initialState, action);
+      expect(next.value).toEqual('some value');
+    });
+
+    it('reduces the number of options', () => {
+      action = chordTypeaheadChanged('a sh');
+      next = chordSelectorReducer(initialState, action);
+      next.options.forEach(option => {
+        expect(option).toMatch(/^A♯/);
+      });
+    });
+
+    it('expands the number of options', () => {
+      let state = merge(initialState, {
+        options: []
+      });
+
+      action = chordTypeaheadChanged('a');
+      next = chordSelectorReducer(state, action);
+      expect(next.options.length).toBeGreaterThan(0);
+    });
+  });
+
+  describe(CHORD_SELECTED, () => {
+    it('sets the value', () => {
+      action = chordSelected('some value');
+      next = chordSelectorReducer(initialState, action);
+      expect(next.value).toEqual('some value');
+    });
+  });
 });

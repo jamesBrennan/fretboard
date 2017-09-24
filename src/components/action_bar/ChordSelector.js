@@ -1,30 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { NOTES } from "../../notes";
+import Autocomplete from 'react-autocomplete';
 
 import {
   rootNoteSelected,
-  chordTypeSelected
+  chordTypeSelected,
+  chordSelected,
+  chordTypeaheadChanged
 } from '../../actions/chordActions';
 
-import {TYPES} from "../../chords";
-
-function ChordSelector({root, type, onRootChange, onTypeChange}) {
+function ChordSelector({root, type, onRootChange, onTypeChange, options, value, onChange, onSelect}) {
   return(
     <div>
-      <select onChange={e => onRootChange(e.target.value)} value={root}>
-        <option/>
-        {NOTES.map((note, i) =>
-          <option key={i} value={note[0]}>{note[0]}</option>
-        )}
-      </select>
-      <select onChange={e => onTypeChange(e.target.value)} value={type}>
-        <option/>
-        {TYPES.map((opt, i) =>
-          <option key={i} value={opt}>{opt}</option>
-        )}
-      </select>
+      <Autocomplete
+        getItemValue={(item) => item}
+        items={options}
+        renderItem={(item, isHighlighted) =>
+          <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+            {item}
+          </div>
+        }
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        onSelect={onSelect}
+      />
     </div>
   );
 }
@@ -32,6 +32,9 @@ function ChordSelector({root, type, onRootChange, onTypeChange}) {
 ChordSelector.propTypes = {
   onRootChange: PropTypes.func,
   onTypeChange: PropTypes.func,
+  onSelect: PropTypes.func,
+  onChange: PropTypes.func,
+  options: PropTypes.array
 };
 
 export default connect(
@@ -39,7 +42,9 @@ export default connect(
   dispatch => {
     return {
       onRootChange: (val) => dispatch(rootNoteSelected(val)),
-      onTypeChange: (val) => dispatch(chordTypeSelected(val))
+      onTypeChange: (val) => dispatch(chordTypeSelected(val)),
+      onChange: (val) => dispatch(chordTypeaheadChanged(val)),
+      onSelect: (val) => dispatch(chordSelected(val))
     };
   }
 )(ChordSelector);

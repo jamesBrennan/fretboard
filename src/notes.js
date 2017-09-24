@@ -25,6 +25,9 @@ const DEGREES = [
   'G'
 ];
 
+const SHARP = '♯';
+const FLAT = '♭';
+
 function noteOffset(note) {
   return NOTES.indexOf(noteGroup(note));
 }
@@ -52,6 +55,39 @@ export function intervalSequence(start, intervals = []) {
 export function degreeSequence(start, degrees = []) {
   let offset = DEGREES.indexOf(start) - 1;
   return degrees.map(i => DEGREES[(Number.parseInt(i)+offset)%7])
+}
+
+export function isCompoundName(noteName) {
+  return !!/^[A-G]♯\/[A-G]♭$/i.exec(noteName);
+}
+
+function isPartialMatch(description, noteName) {
+  let note = convertToNote(description);
+
+  return !isCompoundName(noteName) &&
+    !!new RegExp(`${note}[♯|♭]?`, 'i').exec(noteName);
+}
+
+function convertToNote(description) {
+  let pattern, match;
+
+  pattern = /^([A-G])\s?(sharp|shar|sha|sh|s|♯)?(flat|fla|fl|f|♭)?$/i;
+
+  match = pattern.exec(description);
+  if(match) {
+    let [_, noteLetter, sharp, flat] = match;
+    noteLetter = noteLetter.toUpperCase();
+
+    if(sharp) { return `${noteLetter}${SHARP}`; }
+    if(flat) { return `${noteLetter}${FLAT}`; }
+    return noteLetter;
+  }
+}
+
+export function descriptionMatches(description) {
+  return NOTES
+    .reduce((a,b) => a.concat(b))
+    .filter(note => isPartialMatch(description, note))
 }
 
 export function degreeName(noteName, degree) {
