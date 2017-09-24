@@ -35,7 +35,7 @@ export const initialState = {
   root: '',
   type: '',
   value: '',
-  options: OPTIONS
+  options: OPTIONS.slice(0,10).concat(['...'])
 };
 
 export function chordSelectorReducer(state = initialState, {type, payload} = {}) {

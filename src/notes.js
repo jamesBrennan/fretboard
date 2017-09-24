@@ -1,4 +1,5 @@
 import { range } from "./util";
+import {extractRoot} from "./chordTokenizer";
 
 export const NOTES = [
   ['A'],
@@ -25,8 +26,8 @@ const DEGREES = [
   'G'
 ];
 
-const SHARP = '♯';
-const FLAT = '♭';
+export const SHARP = '♯';
+export const FLAT = '♭';
 
 function noteOffset(note) {
   return NOTES.indexOf(noteGroup(note));
@@ -62,26 +63,10 @@ export function isCompoundName(noteName) {
 }
 
 function isPartialMatch(description, noteName) {
-  let note = convertToNote(description);
+  let note = extractRoot(description);
 
   return !isCompoundName(noteName) &&
     !!new RegExp(`${note}[♯|♭]?`, 'i').exec(noteName);
-}
-
-function convertToNote(description) {
-  let pattern, match;
-
-  pattern = /^([A-G])\s?(sharp|shar|sha|sh|s|♯)?(flat|fla|fl|f|♭)?$/i;
-
-  match = pattern.exec(description);
-  if(match) {
-    let [_, noteLetter, sharp, flat] = match;
-    noteLetter = noteLetter.toUpperCase();
-
-    if(sharp) { return `${noteLetter}${SHARP}`; }
-    if(flat) { return `${noteLetter}${FLAT}`; }
-    return noteLetter;
-  }
 }
 
 export function descriptionMatches(description) {
