@@ -1,5 +1,7 @@
 import * as chords from './chords';
 import {OPTIONS} from "./reducers/chordSelectorReducer";
+import {G_SHARP} from "./notes";
+import {isMemberOfTheoreticalKey} from "./chords";
 
 describe('chords', () => {
   describe('getNotes', () => {
@@ -17,9 +19,18 @@ describe('chords', () => {
       OPTIONS.forEach(opt => {
         expect(() => {
           console.log(opt);
-          chords.getNotes({root: opt.note, type: opt.type});
+          chords.getNotes(opt);
         }).not.toThrow();
       });
+    });
+  });
+
+  describe('isMemberOfTheoreticalKey', () => {
+    test(`${G_SHARP} Major chords`, () => {
+      expect(isMemberOfTheoreticalKey({root: G_SHARP, type: 'Major'})).toBeTruthy();
+      expect(isMemberOfTheoreticalKey({root: G_SHARP, type: 'Major Sixth'})).toBeTruthy();
+      expect(isMemberOfTheoreticalKey({root: G_SHARP, type: 'Major Seventh'})).toBeTruthy();
+      expect(isMemberOfTheoreticalKey({root: G_SHARP, type: 'Minor'})).not.toBeTruthy();
     });
   });
 });

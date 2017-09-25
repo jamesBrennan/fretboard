@@ -1,9 +1,10 @@
 import { intervalSequence, degreeName, degreeSequence } from "./notes";
 import { merge } from "./util";
 import * as interval from './intervals';
+import {THEORETICAL} from "./keys";
 
 const FLAT_FIVE   = {5: interval.FLAT_FIVE};
-const SHARP_FIVE  = {5: interval.SHARP_FIVE};
+const SHARP_FIVE  = {6: interval.SHARP_FIVE};
 const SIXTH       = {6: interval.SIXTH};
 const FLAT_SIX    = {6: interval.FLAT_SIX};
 const SEVENTH     = {7: interval.SEVENTH};
@@ -39,7 +40,7 @@ const SUS_SEVEN     = {
 const AUG_SEVEN     = {
   1: interval.UNISON,
   3: interval.THIRD,
-  5: interval.SHARP_FIVE,
+  6: interval.SHARP_FIVE,
   7: interval.FLAT_SEVEN
 };
 
@@ -71,10 +72,15 @@ function degrees(type) {
   return Object.keys(CHORD_FORMULA[type]);
 }
 
+export function isMemberOfTheoreticalKey({root, type}) {
+  return THEORETICAL.some(key => key.root === root && type.includes(key.type));
+}
+
 export function getNotes({root, type}) {
   let degreeNotes, intervalNotes;
 
   degreeNotes = degreeSequence(root, degrees(type));
+  console.log({degreeNotes});
   intervalNotes = intervalSequence(root, intervals(type));
   return intervalNotes.map((note, i) => {
     return degreeName(note, degreeNotes[i])

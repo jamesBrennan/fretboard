@@ -63,6 +63,23 @@ describe('fretboardReducer', () => {
         });
       });
 
+      it('works with sharp chords', () => {
+        appState.chordSelector = {
+          root: 'D♯',
+          type: 'undefined'
+
+        };
+
+        action = chordTypeSelected('Major');
+        next = fretboardReducer(appState, action);
+
+        expect(next.fretboard['8']).toEqual({
+          '2': 'G',
+          '3': 'D♯',
+          '4': 'A♯'
+        });
+      });
+
       it('displays only the chord notes', () => {
         appState.chordSelector = {
           value: 'A Major',

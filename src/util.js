@@ -34,3 +34,7 @@ export function merge(a, b) {
   }
   return b;
 }
+
+export function flatten(a, b) {
+  return a.concat(b);
+}

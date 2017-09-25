@@ -1,4 +1,7 @@
-import {chordSelectorReducer, initialState} from "./chordSelectorReducer";
+import {
+  chordSelectorReducer, initialState,
+  OPTIONS
+} from "./chordSelectorReducer";
 import {
   CHORD_SELECTED,
   CHORD_TYPE_SELECTED, CHORD_TYPEAHEAD_CHANGED, chordSelected,
@@ -9,35 +12,64 @@ import {
 } from "../actions/chordActions";
 import {CLEAR_ALL, clearAll} from "../actions/actionBarActions";
 import {merge} from "../util";
+import {A, A_SHARP, C_FLAT, D_FLAT, D_SHARP, G_FLAT, G_SHARP} from "../notes";
 
 describe('chordSelectorReducer', () => {
   let action, next, state;
 
-  describe(ROOT_NOTE_SELECTED, () => {
-    it('sets the root note', () => {
-      action = rootNoteSelected('A');
-      next = chordSelectorReducer(initialState, action);
-      expect(next.root).toEqual('A');
-    });
+  describe('OPTIONS', () => {
+    describe('for theoretical keys', () => {
+      describe('G♯ Major', () => {
+        it('omits chords', () => {
+          expect(
+            OPTIONS.some(option =>
+              option.root === G_SHARP && option.type.includes('Major')
+            )
+          ).not.toBeTruthy();
+        });
+      });
 
-    it('sets the root note to null when payload is empty', () => {
-      action = rootNoteSelected('');
-      next = chordSelectorReducer(initialState, action);
-      expect(next.root).toEqual('');
-    });
-  });
+      describe('D♯ Major', () => {
+        it('omits chords', () => {
+          expect(
+            OPTIONS.some(option =>
+              option.root === D_SHARP && option.type.includes('Major')
+            )
+          ).not.toBeTruthy();
+        });
+      });
 
-  describe(CHORD_TYPE_SELECTED, () => {
-    it('sets the type', () => {
-      action = chordTypeSelected('Major');
-      next = chordSelectorReducer(initialState, action);
-      expect(next.type).toEqual('Major');
-    });
+      describe('A♯ Major', () => {
+        expect(
+          OPTIONS.some(option =>
+            option.root === A_SHARP && option.type.includes('Major')
+          )
+        ).not.toBeTruthy();
+      });
 
-    it('sets the type to null when payload is empty', () => {
-      action = chordTypeSelected('');
-      next = chordSelectorReducer(initialState, action);
-      expect(next.type).toEqual('');
+      describe('D♭ Minor', () => {
+        expect(
+          OPTIONS.some(option =>
+            option.root === D_FLAT && option.type.includes('Minor')
+          )
+        ).not.toBeTruthy();
+      });
+
+      describe('G♭ Minor', () => {
+        expect(
+          OPTIONS.some(option =>
+            option.root === G_FLAT && option.type.includes('Minor')
+          )
+        ).not.toBeTruthy();
+      });
+
+      describe('C♭ Minor', () => {
+        expect(
+          OPTIONS.some(option =>
+            option.root === C_FLAT && option.type.includes('Minor')
+          )
+        ).not.toBeTruthy();
+      });
     });
   });
 

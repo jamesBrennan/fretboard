@@ -1,32 +1,58 @@
 import { range } from "./util";
 
+export const SHARP = '♯';
+export const FLAT = '♭';
+
+export const A_FLAT = `A${FLAT}`;
+export const A = 'A';
+export const A_SHARP = `A${SHARP}`;
+
+export const B_FLAT = `B${FLAT}`;
+export const B = 'B';
+
+export const C_FLAT = `C${FLAT}`;
+export const C = 'C';
+export const C_SHARP = `C${SHARP}`;
+
+export const D_FLAT = `D${FLAT}`;
+export const D = 'D';
+export const D_SHARP = `D${SHARP}`;
+
+export const E_FLAT = `E${FLAT}`;
+export const E = 'E';
+
+export const F = 'F';
+export const F_SHARP = `F${SHARP}`;
+
+export const G_FLAT = `G${FLAT}`;
+export const G = 'G';
+export const G_SHARP = `G${SHARP}`;
+
 export const NOTES = [
-  ['A'],
-  ['A♯','B♭','A♯/B♭'],
-  ['B'],
-  ['C'],
-  ['C♯','D♭','C♯/D♭'],
-  ['D'],
-  ['D♯','E♭','D♯/E♭'],
-  ['E'],
-  ['F'],
-  ['F♯','G♭','F♯/G♭'],
-  ['G'],
-  ['G♯','A♭','G♯/A♭'],
+  [A],
+  [A_SHARP, B_FLAT, `${A_SHARP}/${B_FLAT}`],
+  [B],
+  [C],
+  [C_SHARP, D_FLAT, `${C_SHARP}/${D_FLAT}`],
+  [D],
+  [D_SHARP, E_FLAT, `${D_SHARP}/${E_FLAT}`],
+  [E],
+  [F],
+  [F_SHARP, G_FLAT, `${F_SHARP}/${G_FLAT}`],
+  [G],
+  [G_SHARP, A_FLAT, `${G_SHARP}/${A_FLAT}`],
 ];
 
 const DEGREES = [
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G'
+  A,
+  B,
+  C,
+  D,
+  E,
+  F,
+  G
 ];
 
-export const SHARP = '♯';
-export const FLAT = '♭';
 
 function noteOffset(note) {
   return NOTES.indexOf(noteGroup(note));
@@ -53,8 +79,14 @@ export function intervalSequence(start, intervals = []) {
 }
 
 export function degreeSequence(start, degrees = []) {
-  let offset = DEGREES.indexOf(start) - 1;
-  return degrees.map(i => DEGREES[(Number.parseInt(i, 10)+offset)%7])
+  let re, match, noteName;
+  re = /(\w)([♯|♭])?/;
+  match = re.exec(start);
+  if(!match) { throw `Unknown note "${start}"` }
+  noteName = match[1];
+
+  let offset = DEGREES.indexOf(noteName) - 1;
+  return degrees.map(i => DEGREES[(Number.parseInt(i)+offset)%7])
 }
 
 export function isCompoundName(noteName) {

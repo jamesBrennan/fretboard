@@ -64,7 +64,7 @@ describe('degreeSequence()', () => {
       'A',
       'C',
       'E'
-    ])
+    ]);
   });
 });
 
