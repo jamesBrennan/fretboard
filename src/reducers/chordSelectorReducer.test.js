@@ -65,7 +65,7 @@ describe('chordSelectorReducer', () => {
       action = chordTypeaheadChanged('a sh');
       next = chordSelectorReducer(initialState, action);
       next.options.forEach(option => {
-        expect(option).toMatch(/^A♯/);
+        expect(option.label).toMatch(/^A♯/);
       });
     });
 
@@ -82,9 +82,9 @@ describe('chordSelectorReducer', () => {
 
   describe(CHORD_SELECTED, () => {
     it('sets the value', () => {
-      action = chordSelected('some value');
+      action = chordSelected('A Major');
       next = chordSelectorReducer(initialState, action);
-      expect(next.value).toEqual('some value');
+      expect(next.value).toEqual('A Major');
     });
   });
 });

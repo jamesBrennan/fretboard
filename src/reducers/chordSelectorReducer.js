@@ -9,10 +9,18 @@ import {isCompoundName, NOTES} from "../notes";
 import {TYPES} from "../chords";
 import {tokenize} from "../chordTokenizer";
 
+function chordDescription(root, type) {
+  return {
+    root,
+    type,
+    label: `${root} ${type}`
+  }
+}
+
 function chordNames(noteNames, types) {
   return noteNames
     .filter(note => !isCompoundName(note))
-    .map(note => types.map(type => `${note} ${type}`))
+    .map(root => types.map(type => chordDescription(root, type)))
     .reduce((a, b) => a.concat(b), [])
 }
 
@@ -25,15 +33,13 @@ function items(notes, types) {
 function filterOptions(options, filter) {
   let tokens = tokenize(filter);
   return options.filter(option =>
-    option.includes(`${tokens.root} ${tokens.chordName}`)
+    option.label.includes(`${tokens.root} ${tokens.type}`)
   )
 }
 
-const OPTIONS = items(NOTES, TYPES);
+export const OPTIONS = items(NOTES, TYPES);
 
 export const initialState = {
-  root: '',
-  type: '',
   value: '',
   options: OPTIONS.slice(0,10).concat(['...'])
 };

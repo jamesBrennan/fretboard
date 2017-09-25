@@ -5,11 +5,11 @@ import { CLEAR_ALL } from "../../actions/actionBarActions";
 
 import { hitboxClickedTransform } from "./HITBOX_CLICKED";
 import {
-  CHORD_TYPE_SELECTED,
+  CHORD_SELECTED,
   ROOT_NOTE_SELECTED
 } from "../../actions/chordActions";
 import {rootNoteSelectedTransform} from "./ROOT_NOTE_SELECTED";
-import {chordTypeSelectedTransform} from "./CHORD_TYPE_SELECTED";
+import {chordSelectedTransform} from "./CHORD_SELECTED";
 
 function set(state = {}, value) {
   let next = merge(state, {});
@@ -38,10 +38,10 @@ function fretboardReducer(state = {}, {type, payload} = {}) {
         fretboard: rootNoteSelectedTransform(next, {payload})
       });
 
-    case CHORD_TYPE_SELECTED:
+    case CHORD_SELECTED:
       next = reset(state);
       return merge(next, {
-        fretboard: chordTypeSelectedTransform(next, {payload})
+        fretboard: chordSelectedTransform(next, {payload})
       });
 
     case CLEAR_ALL:

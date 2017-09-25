@@ -86,16 +86,11 @@ function matchChordName(match) {
     .join(' ');
 }
 
-export function extractRoot(input) {
-  let match = matchChord(input);
-  return matchRoot(match);
-}
-
 export function tokenize(input) {
   let match = matchChord(input);
 
   return {
     root: matchRoot(match),
-    chordName: matchChordName(match)
+    type: matchChordName(match)
   }
 }

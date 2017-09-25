@@ -15,10 +15,10 @@ export const chordTypeSelected = (type) => {
 };
 
 export const CHORD_SELECTED = 'CHORD_SELECTED';
-export const chordSelected = (value) => {
+export const chordSelected = (chordDescription) => {
   return {
     type: CHORD_SELECTED,
-    payload: value
+    payload: chordDescription
   }
 };
 

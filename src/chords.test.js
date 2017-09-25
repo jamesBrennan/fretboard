@@ -1,4 +1,5 @@
 import * as chords from './chords';
+import {OPTIONS} from "./reducers/chordSelectorReducer";
 
 describe('chords', () => {
   describe('getNotes', () => {
@@ -8,6 +9,17 @@ describe('chords', () => {
 
       expect(chords.getNotes({root: 'A', type: 'Minor'}))
         .toEqual(['A','C','E']);
+    });
+  });
+
+  describe('All defined chords', () => {
+    test('do not throw errors', () => {
+      OPTIONS.forEach(opt => {
+        expect(() => {
+          console.log(opt);
+          chords.getNotes({root: opt.note, type: opt.type});
+        }).not.toThrow();
+      });
     });
   });
 });

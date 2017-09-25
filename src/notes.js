@@ -1,5 +1,4 @@
 import { range } from "./util";
-import {extractRoot} from "./chordTokenizer";
 
 export const NOTES = [
   ['A'],
@@ -55,7 +54,7 @@ export function intervalSequence(start, intervals = []) {
 
 export function degreeSequence(start, degrees = []) {
   let offset = DEGREES.indexOf(start) - 1;
-  return degrees.map(i => DEGREES[(Number.parseInt(i)+offset)%7])
+  return degrees.map(i => DEGREES[(Number.parseInt(i, 10)+offset)%7])
 }
 
 export function isCompoundName(noteName) {
@@ -69,7 +68,7 @@ export function degreeName(noteName, degree) {
   if(match) {
     return match.slice(1).join('');
   }
-  throw `The given degree "${degree}" does not match the given note name "${noteName}"`;
+  throw new Error(`The given degree "${degree}" does not match the given note name "${noteName}"`);
 }
 
 export function equals(a, b) {

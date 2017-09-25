@@ -1,20 +1,13 @@
 import {getNotes} from "../../chords";
 import {collectNotePositions} from "../../NoteMatrix";
 import toggleNotes from "./toggleNotes";
+import {tokenize} from "../../chordTokenizer";
 
-export function chordTypeSelectedTransform(state = {}, {payload}) {
-  let {root} = state.chordSelector;
-  if(!root) { return state.fretboard; }
+export function chordSelectedTransform(state = {}, {payload}) {
+  let notes, notePositions;
+  let {root, type} = tokenize(payload);
 
-  let type, notes, notePositions;
-
-  type = payload;
-  if(!type) {
-    notes = [root]
-  }
-  else {
-    notes = getNotes({root, type});
-  }
+  notes = getNotes({root, type});
 
   notePositions = notes
     .map(note => collectNotePositions(note, state.noteMatrix))

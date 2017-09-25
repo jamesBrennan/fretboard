@@ -9,7 +9,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `A${SHARP}`,
-        chordName: 'Minor'
+        type: 'Minor'
       }
     });
 
@@ -25,7 +25,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `A${SHARP}`,
-        chordName: 'Major'
+        type: 'Major'
       }
     });
 
@@ -41,7 +41,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `C`,
-        chordName: 'Major Seventh'
+        type: 'Major Seventh'
       }
     });
 
@@ -58,7 +58,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `B${FLAT}`,
-        chordName: 'Minor Seventh'
+        type: 'Minor Seventh'
       }
     });
 
@@ -75,7 +75,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `B${FLAT}`,
-        chordName: 'Major Seventh Flat 5'
+        type: 'Major Seventh Flat 5'
       }
     });
 
@@ -93,7 +93,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `C`,
-        chordName: 'Major Seventh Sharp 5'
+        type: 'Major Seventh Sharp 5'
       }
     });
 
@@ -109,7 +109,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `C`,
-        chordName: 'Minor Major'
+        type: 'Minor Major'
       }
     });
 
@@ -124,7 +124,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `C`,
-        chordName: 'Dominant Seventh'
+        type: 'Dominant Seventh'
       }
     });
 
@@ -140,7 +140,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `C`,
-        chordName: 'Diminished'
+        type: 'Diminished'
       }
     });
 
@@ -155,7 +155,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `C`,
-        chordName: 'Diminished Seventh',
+        type: 'Diminished Seventh',
       }
     });
 
@@ -171,7 +171,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `C`,
-        chordName: 'Half-Diminished',
+        type: 'Half-Diminished',
       }
     });
 
@@ -189,7 +189,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `C`,
-        chordName: 'Suspended Seventh',
+        type: 'Suspended Seventh',
       }
     });
 
@@ -205,7 +205,7 @@ describe('tokenize', () => {
     beforeEach(() => {
       expected = {
         root: `C`,
-        chordName: 'Augmented Seventh',
+        type: 'Augmented Seventh',
       }
     });
 

@@ -4,21 +4,19 @@ import { connect } from 'react-redux';
 import Autocomplete from 'react-autocomplete';
 
 import {
-  rootNoteSelected,
-  chordTypeSelected,
   chordSelected,
   chordTypeaheadChanged
 } from '../../actions/chordActions';
 
-function ChordSelector({root, type, onRootChange, onTypeChange, options, value, onChange, onSelect}) {
+function ChordSelector({options, value, onChange, onSelect}) {
   return(
     <div>
       <Autocomplete
-        getItemValue={(item) => item}
+        getItemValue={(item) => item.label}
         items={options}
         renderItem={(item, isHighlighted) =>
           <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
-            {item}
+            {item.label}
           </div>
         }
         value={value}
@@ -30,8 +28,6 @@ function ChordSelector({root, type, onRootChange, onTypeChange, options, value, 
 }
 
 ChordSelector.propTypes = {
-  onRootChange: PropTypes.func,
-  onTypeChange: PropTypes.func,
   onSelect: PropTypes.func,
   onChange: PropTypes.func,
   options: PropTypes.array
@@ -41,8 +37,6 @@ export default connect(
   state => state.chordSelector,
   dispatch => {
     return {
-      onRootChange: (val) => dispatch(rootNoteSelected(val)),
-      onTypeChange: (val) => dispatch(chordTypeSelected(val)),
       onChange: (val) => dispatch(chordTypeaheadChanged(val)),
       onSelect: (val) => dispatch(chordSelected(val))
     };
