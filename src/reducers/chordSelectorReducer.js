@@ -5,9 +5,9 @@ import {
 } from "../actions/chordActions";
 import {merge} from "../util";
 import {CLEAR_ALL} from "../actions/actionBarActions";
-
-import {descriptionMatches, isCompoundName, NOTES} from "../notes";
+import {isCompoundName, NOTES} from "../notes";
 import {TYPES} from "../chords";
+import {tokenize} from "../chordTokenizer";
 
 function chordNames(noteNames, types) {
   return noteNames
@@ -23,9 +23,9 @@ function items(notes, types) {
 }
 
 function filterOptions(options, filter) {
-  let rootNotes = descriptionMatches(filter);
+  let tokens = tokenize(filter);
   return options.filter(option =>
-    rootNotes.some(note => new RegExp(`^${note}`).exec(option))
+    option.includes(`${tokens.root} ${tokens.chordName}`)
   )
 }
 

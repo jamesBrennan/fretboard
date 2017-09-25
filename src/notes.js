@@ -62,19 +62,6 @@ export function isCompoundName(noteName) {
   return !!/^[A-G]♯\/[A-G]♭$/i.exec(noteName);
 }
 
-function isPartialMatch(description, noteName) {
-  let note = extractRoot(description);
-
-  return !isCompoundName(noteName) &&
-    !!new RegExp(`${note}[♯|♭]?`, 'i').exec(noteName);
-}
-
-export function descriptionMatches(description) {
-  return NOTES
-    .reduce((a,b) => a.concat(b))
-    .filter(note => isPartialMatch(description, note))
-}
-
 export function degreeName(noteName, degree) {
   let pattern = `(${degree})([♯|♭])?`;
   let re = new RegExp(pattern);

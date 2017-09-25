@@ -69,4 +69,151 @@ describe('tokenize', () => {
       expect(tokenize('b flat min 7')).toEqual(expected);
     });
   });
+
+  describe('Major Seventh Flat 5', () => {
+
+    beforeEach(() => {
+      expected = {
+        root: `B${FLAT}`,
+        chordName: 'Major Seventh Flat 5'
+      }
+    });
+
+    it('has the correct root and chord name', () => {
+      expect(tokenize('b flat maj seventh flat 5')).toEqual(expected);
+      expect(tokenize('b fl maj sev fl 5')).toEqual(expected);
+      expect(tokenize('b fl maj 7 fl 5')).toEqual(expected);
+      expect(tokenize('bflmajsevfl5')).toEqual(expected);
+      expect(tokenize('bflmaj7fl5')).toEqual(expected);
+    });
+  });
+
+  describe('Major Seventh Sharp 5', () => {
+
+    beforeEach(() => {
+      expected = {
+        root: `C`,
+        chordName: 'Major Seventh Sharp 5'
+      }
+    });
+
+    it('has the correct root and chord name', () => {
+      expect(tokenize('c major seventh sharp 5')).toEqual(expected);
+      expect(tokenize('c maj sev sh 5')).toEqual(expected);
+      expect(tokenize('c maj 7 sh 5')).toEqual(expected);
+      expect(tokenize('cmaj7sh5')).toEqual(expected);
+    });
+  });
+
+  describe('Minor Major', () => {
+    beforeEach(() => {
+      expected = {
+        root: `C`,
+        chordName: 'Minor Major'
+      }
+    });
+
+    it('has the correct root and chord name', () => {
+      expect(tokenize('c minor major')).toEqual(expected);
+      expect(tokenize('c min maj')).toEqual(expected);
+      expect(tokenize('cmima')).toEqual(expected);
+    });
+  });
+
+  describe('Dominant Seventh', () => {
+    beforeEach(() => {
+      expected = {
+        root: `C`,
+        chordName: 'Dominant Seventh'
+      }
+    });
+
+    it('has the correct root and chord name', () => {
+      expect(tokenize('c dominant seventh')).toEqual(expected);
+      expect(tokenize('c dom sev')).toEqual(expected);
+      expect(tokenize('cdomsev')).toEqual(expected);
+      expect(tokenize('c dom 7')).toEqual(expected);
+    });
+  });
+
+  describe('Diminished', () => {
+    beforeEach(() => {
+      expected = {
+        root: `C`,
+        chordName: 'Diminished'
+      }
+    });
+
+    it('has the correct root and chord name', () => {
+      expect(tokenize('c diminished')).toEqual(expected);
+      expect(tokenize('c dim')).toEqual(expected);
+      expect(tokenize('cdim')).toEqual(expected);
+    });
+  });
+
+  describe('Diminished Seventh', () => {
+    beforeEach(() => {
+      expected = {
+        root: `C`,
+        chordName: 'Diminished Seventh',
+      }
+    });
+
+    it('has the correct root and chord name', () => {
+      expect(tokenize('c diminished seventh')).toEqual(expected);
+      expect(tokenize('c dim sev')).toEqual(expected);
+      expect(tokenize('cdimsev')).toEqual(expected);
+      expect(tokenize('c dim 7')).toEqual(expected);
+    });
+  });
+
+  describe('Half-Diminished', () => {
+    beforeEach(() => {
+      expected = {
+        root: `C`,
+        chordName: 'Half-Diminished',
+      }
+    });
+
+    it('has the correct root and chord name', () => {
+      expect(tokenize('c half-diminished')).toEqual(expected);
+      expect(tokenize('c half diminished')).toEqual(expected);
+      expect(tokenize('c half-dim')).toEqual(expected);
+      expect(tokenize('c half dim')).toEqual(expected);
+      expect(tokenize('chalfdim')).toEqual(expected);
+      expect(tokenize('c hal')).toEqual(expected);
+    });
+  });
+
+  describe('Suspended Seventh', () => {
+    beforeEach(() => {
+      expected = {
+        root: `C`,
+        chordName: 'Suspended Seventh',
+      }
+    });
+
+    it('has the correct root and chord name', () => {
+      expect(tokenize('c suspended seventh')).toEqual(expected);
+      expect(tokenize('c sus seven')).toEqual(expected);
+      expect(tokenize('c sus 7')).toEqual(expected);
+      expect(tokenize('csus7')).toEqual(expected);
+    });
+  });
+
+  describe('Augmented Seventh', () => {
+    beforeEach(() => {
+      expected = {
+        root: `C`,
+        chordName: 'Augmented Seventh',
+      }
+    });
+
+    it('has the correct root and chord name', () => {
+      expect(tokenize('c augmented seventh')).toEqual(expected);
+      expect(tokenize('c aug seven')).toEqual(expected);
+      expect(tokenize('c aug 7')).toEqual(expected);
+      expect(tokenize('caug7')).toEqual(expected);
+    });
+  });
 });

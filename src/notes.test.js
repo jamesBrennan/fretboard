@@ -111,20 +111,3 @@ describe('isCompoundName', () => {
     expect(isCompoundName('C♯')).not.toBeTruthy();
   })
 });
-
-describe('descriptionMatches', () => {
-  test('exact match', () => {
-    expect(descriptionMatches('C♯')).toEqual(['C♯'])
-  });
-
-  test('partial match', () => {
-    expect(descriptionMatches('C')).toEqual(['C', 'C♯']);
-    expect(descriptionMatches('c')).toEqual(['C', 'C♯']);
-  });
-
-  test('language match', () => {
-    expect(descriptionMatches('c sharp')).toEqual(['C♯']);
-    expect(descriptionMatches('c sh')).toEqual(['C♯']);
-    expect(descriptionMatches('csh')).toEqual(['C♯']);
-  });
-});
